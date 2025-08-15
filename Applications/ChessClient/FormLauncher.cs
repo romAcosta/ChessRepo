@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Chess.Core;
 
 namespace ChessClient;
 
@@ -81,5 +82,10 @@ public partial class FormLauncher : Form
 
 
 
+    }
+
+    private async void chess960_checkbox_CheckedChanged(object sender, EventArgs e)
+    {
+        Game.start960 = ((CheckBox)sender).Checked;
     }
 }

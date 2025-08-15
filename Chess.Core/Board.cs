@@ -1,4 +1,5 @@
-﻿using Chess.Core.Pieces;
+﻿using Chess.Core._960;
+using Chess.Core.Pieces;
 using Newtonsoft.Json;
 
 namespace Chess.Core
@@ -61,11 +62,15 @@ namespace Chess.Core
             Size = size;
             CreateTiles(size, size);
 
-            if (addDefaultPieces)
+            if (addDefaultPieces && !Game.start960)
             {
                 AddDefaultPieces();
                 _blackKingLocation = new BoardLocation(0, 4);
                 _whiteKingLocation = new BoardLocation(7, 4);
+            }
+            else if (Game.start960)
+            {
+                SetUp960();
             }
         }
          
@@ -140,6 +145,25 @@ namespace Chess.Core
                     }
                 }
             }
+        }
+
+        void SetUp960()
+        {
+            Piece[] whitePieces = Chess960Setup.BoardSetup();
+            Piece[] blackPieces = Chess960Setup.Get960BlackSetup(whitePieces);
+            for (int i = 0; i < 8; i++)
+            {
+                _tiles[6, i].Piece = new Pawn('w', 6, i);
+                _tiles[1, i].Piece = new Pawn('b', 1, i);
+                _tiles[7, whitePieces[i].CurrentLocation.Column].Piece = whitePieces[i];
+                _tiles[0, blackPieces[i].CurrentLocation.Column].Piece = blackPieces[i];
+                if (i == 7)
+                {
+                    _blackKingLocation = blackPieces[i].CurrentLocation;
+                    _whiteKingLocation = whitePieces[i].CurrentLocation;
+                }
+            }
+            
         }
 
         private void UpdateKingPosition(char color, int row, int col)

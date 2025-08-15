@@ -6,6 +6,8 @@ namespace Chess.Core
 {
     public class Game
     {
+        public static bool start960 = false;
+        
         public delegate void KingChecked(King k);
         public event KingChecked OnKingChecked;
 

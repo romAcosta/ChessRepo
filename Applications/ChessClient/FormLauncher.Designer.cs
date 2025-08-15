@@ -36,6 +36,8 @@ partial class FormLauncher
         btnHostServer = new Button();
         pictureBox2 = new PictureBox();
         label1 = new Label();
+        checkbox = new CheckBox();
+        
         ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
         SuspendLayout();
@@ -161,6 +163,18 @@ partial class FormLauncher
         label1.TabIndex = 2;
         label1.Text = "Chess";
         label1.TextAlign = ContentAlignment.MiddleCenter;
+        
+        //checkbox
+        checkbox.AutoSize = true;
+        checkbox.Location = new Point(246, 250);
+        checkbox.Name = "chess960Checkbox";
+        checkbox.Size = new Size(200, 50);
+        checkbox.TabIndex = 3;
+        checkbox.Text = "960";
+        checkbox.UseVisualStyleBackColor = true;
+        checkbox.CheckedChanged += chess960_checkbox_CheckedChanged;
+        
+        
         // 
         // FormLauncher
         // 
@@ -176,6 +190,7 @@ partial class FormLauncher
         Controls.Add(btnPlayerVsPlayer);
         Controls.Add(pictureBox2);
         Controls.Add(pictureBox1);
+        Controls.Add(checkbox);
         FormBorderStyle = FormBorderStyle.Fixed3D;
         Margin = new Padding(6);
         MaximizeBox = false;
@@ -185,6 +200,8 @@ partial class FormLauncher
         ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
         ResumeLayout(false);
+        
+        
     }
 
     #endregion
@@ -197,4 +214,5 @@ partial class FormLauncher
     private Button btnHostServer;
     private PictureBox pictureBox2;
     private Label label1;
+    private CheckBox checkbox;
 }
